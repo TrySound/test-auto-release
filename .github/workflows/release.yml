@@ -11,7 +11,17 @@ jobs:
     permissions:
       contents: write
     steps:
+    - uses: ardalanamini/auto-changelog@v4
+      id: changelog
+      with:
+        commit-types: |
+          feat: New Features
+          fix: Bug Fixes
+          docs: Documentation
+          experimental: Experimental features
+        semver: false
+
     - uses: ncipollo/release-action@v1
       with:
         body: |
-          \# the most cool release ever
+          ${{ steps.changelog.outputs.changelog }}
