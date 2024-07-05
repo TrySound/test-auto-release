@@ -35,6 +35,8 @@ jobs:
             const match = commit.commit.message.match(/^(?<type>\w+)\s*:\s*(?<message>.+)\n/)
             const type = match?.groups?.type
             const message = match?.groups?.message
+            console.log(commit.commit.message)
+            console.log(type, message, commit.author.login)
             if (type && message) {
               const availableType = type in groups ? type : 'other'
               const capitalized = message[0].toLocaleUpperCase() + message.slice(1)
